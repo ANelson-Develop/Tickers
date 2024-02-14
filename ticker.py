@@ -14,6 +14,8 @@ import logging
 import os
 import sys
 
+st.set_page_config(layout="wide")  # Set the page layout to wide
+
 # To helps suppress all unwanted outputs from yfinance
 logging.getLogger('yfinance').setLevel(logging.CRITICAL)
 
@@ -58,6 +60,9 @@ while True:  # Loop until the user wants to exit
         revenue = round(info.get("totalRevenue", 0) / 1_000_000)
         revenue = f"${format(revenue, ',')}M"  # Format as currency with commas
 
+        #Get Revenue Growth
+        revenue_growth = info.get("revenueGrowth")
+
         # Get the PE and PS ratios
         pe_ratio = "{:.2f}".format(info.get("trailingPE", 0))
         ps_ratio = "{:.2f}".format(info.get("priceToSalesTrailing12Months", 0))
@@ -78,12 +83,12 @@ while True:  # Loop until the user wants to exit
         volatility = "{:.3f}".format(volatility)
 
         # Add the data to the list
-        data.append([ticker, market_cap, revenue, pe_ratio, ps_ratio, volatility])
+        data.append([ticker, market_cap, revenue, revenue_growth, pe_ratio, ps_ratio, volatility])
     
     print() # Print a blank line
 
     # Print the data in a table
-    df = pd.DataFrame(data, columns=["Ticker", "Market Cap", "Revenue", "PE Ratio", "PS Ratio", "Volatility"])
+    df = pd.DataFrame(data, columns=["Ticker", "Market Cap", "Revenue", "Revenue Growth", "PE Ratio", "PS Ratio", "Volatility"])
     print(df.to_string(index=False, col_space=15, justify='right'))
     print()
     
