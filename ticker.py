@@ -1,9 +1,9 @@
 
 #   Author: Andrew Nelson
-#   Description: This program gets the market cap, revenue, PE ratio, PS ratio, and volatility for a list of tickers.
+#   Description: This program gets the market cap, revenue, revenue growth, PE ratio, PS ratio, and volatility for a list of tickers.
 #   Date Created: 21-JAN-2024
-#   Last Modified: 24-JAN-2024
-#   Revision: 4.1
+#   Last Modified: 13-FEB-2024
+#   Revision: 4.2
 
 #Import all the things
 import yfinance as yf
